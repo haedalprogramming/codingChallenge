@@ -1,438 +1,491 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, ChevronUp, Copy, Clock, CheckCircle, Award, Heart, Youtube, Instagram, Lightbulb } from 'lucide-react';
-
-const App = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [isCopied, setIsCopied] = useState(false);
-  const [openFaqIndex, setOpenFaqIndex] = useState(null);
-
-  // 카운트다운 로직 (예시: 12월 31일 마감)
-  useEffect(() => {
-    const targetDate = new Date();
-    targetDate.setMonth(11); // 12월
-    targetDate.setDate(31);
-    targetDate.setHours(23, 59, 59);
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리 아이 새해 첫 코딩 챌린지</title>
     
-    // 만약 현재 날짜가 12월 31일을 지났다면 내년으로 설정 (데모용)
-    if (new Date() > targetDate) {
-        targetDate.setFullYear(targetDate.getFullYear() + 1);
-    }
-
-    const timer = setInterval(() => {
-      const now = new Date();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / 1000 / 60) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  // 스크롤 이동 함수
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
-  };
-
-  // 해시태그 복사 함수
-  const copyHashtags = () => {
-    const tags = "#우리아이새해첫코딩 #옥토스튜디오 #코딩챌린지 #새해복많이받으세요 #해달에듀";
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    // 텍스트를 담을 임시 엘리먼트 생성
-    const textArea = document.createElement("textarea");
-    textArea.value = tags;
-    document.body.appendChild(textArea);
-    textArea.select();
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
-    try {
-      document.execCommand('copy');
-      setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error('복사 실패', err);
-      alert('복사에 실패했습니다. 직접 복사해주세요.');
-    }
-    
-    document.body.removeChild(textArea);
-  };
+    <!-- Font Settings -->
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; }
+        .scroll-mt-20 { scroll-margin-top: 5rem; }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 min-h-screen">
 
-  const toggleFaq = (index) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
-
-  return (
-    <div className="font-sans text-gray-800 bg-gray-50 min-h-screen">
-      {/* Navigation */}
-      <nav className="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="text-xl font-bold text-orange-600 flex items-center gap-2">
-            <span className="bg-orange-100 p-1 rounded-lg">🧧</span>
-            코딩챌린지
-          </div>
-          
-          {/* Mobile Menu Button */}
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-6 font-medium text-gray-600">
-            <button onClick={() => scrollToSection('about')} className="hover:text-orange-500">챌린지 소개</button>
-            <button onClick={() => scrollToSection('timeline')} className="hover:text-orange-500">일정 안내</button>
-            <button onClick={() => scrollToSection('guide')} className="hover:text-orange-500">참여 가이드</button>
-            <button onClick={() => scrollToSection('awards')} className="hover:text-orange-500">시상 안내</button>
-            <button onClick={() => scrollToSection('apply')} className="px-4 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition">
-              참가 신청하기
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-orange-600 flex items-center gap-2">
+                <span class="bg-orange-100 p-1 rounded-lg">🧧</span>
+                코딩챌린지
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2">
+                <i data-lucide="menu"></i>
             </button>
-          </div>
-        </div>
 
-        {/* Mobile Menu Dropdown */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-white border-t p-4 flex flex-col space-y-3 shadow-lg">
-            <button onClick={() => scrollToSection('about')} className="text-left py-2">챌린지 소개</button>
-            <button onClick={() => scrollToSection('timeline')} className="text-left py-2">일정 안내</button>
-            <button onClick={() => scrollToSection('guide')} className="text-left py-2">참여 가이드</button>
-            <button onClick={() => scrollToSection('awards')} className="text-left py-2">시상 안내</button>
-            <button onClick={() => scrollToSection('apply')} className="w-full text-center py-3 bg-orange-500 text-white rounded-lg font-bold">
-              무료 참가 신청하기
-            </button>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section */}
-      <section id="hero" className="relative pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
-            alt="Family Background" 
-            className="w-full h-full object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-orange-50/80 to-white/90"></div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <span className="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-bold mb-4 animate-bounce">
-            ⚡ 올해만 참가비 0원! (내년부터 유료 전환)
-          </span>
-          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4 text-gray-900">
-            이번 설날, 세뱃돈 대신<br />
-            <span className="text-orange-500">'감동'을 코딩해서</span> 선물하세요! 🧧
-          </h1>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            휴대폰 하나로 만드는 우리 아이 첫 인터랙티브 아트.<br />
-            부모님, 할머니, 할아버지를 깜짝 놀라게 할<br className="md:hidden"/> 세상에 하나뿐인 '디지털 연하장'
-          </p>
-
-          {/* Countdown Timer */}
-          <div className="flex justify-center space-x-4 mb-8">
-            <div className="bg-white p-3 rounded-lg shadow-md min-w-[70px]">
-              <div className="text-2xl font-bold text-orange-600">{timeLeft.days}</div>
-              <div className="text-xs text-gray-500">일</div>
-            </div>
-            <div className="bg-white p-3 rounded-lg shadow-md min-w-[70px]">
-              <div className="text-2xl font-bold text-orange-600">{timeLeft.hours}</div>
-              <div className="text-xs text-gray-500">시간</div>
-            </div>
-            <div className="bg-white p-3 rounded-lg shadow-md min-w-[70px]">
-              <div className="text-2xl font-bold text-orange-600">{timeLeft.minutes}</div>
-              <div className="text-xs text-gray-500">분</div>
-            </div>
-            <div className="bg-white p-3 rounded-lg shadow-md min-w-[70px]">
-              <div className="text-2xl font-bold text-orange-600">{timeLeft.seconds}</div>
-              <div className="text-xs text-gray-500">초</div>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center gap-3">
-            <button 
-              onClick={() => scrollToSection('apply')}
-              className="w-full md:w-auto px-8 py-4 bg-orange-500 text-white text-xl font-bold rounded-full shadow-lg hover:bg-orange-600 transform transition hover:scale-105"
-            >
-              👉 선착순 무료 신청하기
-            </button>
-            <p className="text-sm text-gray-500 bg-white/80 px-4 py-1 rounded-full">
-              지금 신청하면 1월 교육 영상 무료 제공!
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-3">왜 '새해 첫 코딩 챌린지'인가요?</h2>
-            <div className="w-16 h-1 bg-orange-400 mx-auto rounded-full"></div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div className="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-lg transition duration-300">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">🎈</div>
-              <h3 className="text-xl font-bold mb-3">쉽고 재밌는 도구</h3>
-              <p className="text-gray-600 break-keep">
-                복잡한 컴퓨터? NO! <span className="font-bold text-blue-600">휴대폰 하나면 OK!</span><br/>
-                MIT 미디어랩의 '옥토 스튜디오'로 블록을 조립하듯 터치 몇 번이면 캐릭터가 살아나요.
-              </p>
-            </div>
-            {/* Card 2 */}
-            <div className="bg-orange-50 p-6 rounded-2xl text-center hover:shadow-lg transition duration-300 border border-orange-100">
-              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">👨‍👩‍👧‍👦</div>
-              <h3 className="text-xl font-bold mb-3">가족 간의 소통</h3>
-              <p className="text-gray-600 break-keep">
-                코딩 결과물보다 중요한 건 <span className="font-bold text-orange-600">'가족의 반응'</span><br/>
-                "할머니, 제가 만든거예요!" 아이의 작품을 본 가족의 환한 웃음이 진짜 목표입니다.
-              </p>
-            </div>
-            {/* Card 3 */}
-            <div className="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-lg transition duration-300">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">🎓</div>
-              <h3 className="text-xl font-bold mb-3">특별한 교육 기회</h3>
-              <p className="text-gray-600 break-keep">
-                겨울방학, 스마트폰을 생산적으로!<br/>
-                유튜브만 보던 아이가 <span className="font-bold text-green-600">크리에이터</span>가 됩니다. 논리력과 디지털 리터러시를 키워주세요.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline Section */}
-      <section id="timeline" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-3">챌린지 로드맵</h2>
-            <p className="text-gray-500">아이들의 겨울방학을 알차게 채워줄 4단계 여정입니다.</p>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <div className="relative border-l-4 border-orange-200 ml-4 md:ml-8 space-y-10">
-              
-              {/* Step 1 */}
-              <div className="relative pl-8">
-                <div className="absolute -left-3.5 top-1 w-6 h-6 bg-orange-500 rounded-full border-4 border-white"></div>
-                <div className="bg-white p-5 rounded-xl shadow-sm">
-                  <span className="text-sm font-bold text-orange-500 block mb-1">12/15 ~ 12/31</span>
-                  <h3 className="text-lg font-bold mb-2">STEP 1. 참가자 모집</h3>
-                  <p className="text-gray-600 text-sm">선착순 마감 주의! 지금 바로 신청하세요.</p>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="relative pl-8">
-                <div className="absolute -left-3.5 top-1 w-6 h-6 bg-yellow-400 rounded-full border-4 border-white"></div>
-                <div className="bg-white p-5 rounded-xl shadow-sm">
-                  <span className="text-sm font-bold text-yellow-500 block mb-1">1월 (6주간)</span>
-                  <h3 className="text-lg font-bold mb-2">STEP 2. 코딩 교육 & 제작</h3>
-                  <p className="text-gray-600 text-sm">온라인 영상으로 집에서 편하게! 나만의 아이디어를 더해 작품을 완성합니다.</p>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="relative pl-8">
-                <div className="absolute -left-3.5 top-1 w-6 h-6 bg-yellow-400 rounded-full border-4 border-white"></div>
-                <div className="bg-white p-5 rounded-xl shadow-sm">
-                  <span className="text-sm font-bold text-yellow-500 block mb-1">설 연휴 기간</span>
-                  <h3 className="text-lg font-bold mb-2">STEP 3. 미션 수행</h3>
-                  <p className="text-gray-600 text-sm">가족들에게 작품을 공개하고 반응을 촬영해요. 생생한 현장음이 포인트!</p>
-                </div>
-              </div>
-
-               {/* Step 4 */}
-               <div className="relative pl-8">
-                <div className="absolute -left-3.5 top-1 w-6 h-6 bg-gray-400 rounded-full border-4 border-white"></div>
-                <div className="bg-white p-5 rounded-xl shadow-sm">
-                  <span className="text-sm font-bold text-gray-500 block mb-1">2월 초</span>
-                  <h3 className="text-lg font-bold mb-2">STEP 4. 제출 및 시상</h3>
-                  <p className="text-gray-600 text-sm">유튜브/인스타 업로드! 조회수 집계 후 수상자를 발표합니다.</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Guide Section */}
-      <section id="guide" className="py-16 bg-orange-600 text-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold mb-3">도전! 숏폼 크리에이터 가이드</h2>
-            <p className="text-orange-100">심사위원(시청자)의 마음을 사로잡을 영상을 만들어주세요!</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Checklist */}
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <CheckCircle className="text-yellow-300"/> 필수 체크리스트
-              </h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <span className="bg-white text-orange-600 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs font-bold mt-0.5">1</span>
-                  <p><strong>화면 비율:</strong> 세로 화면 (9:16 비율) 권장</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="bg-white text-orange-600 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs font-bold mt-0.5">2</span>
-                  <p><strong>영상 길이:</strong> 60초 미만 (숏폼 필수!)</p>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="bg-white text-orange-600 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs font-bold mt-0.5">3</span>
-                  <p><strong>필수 내용:</strong> 아이가 코딩한 작품 화면 + <span className="text-yellow-300 font-bold">가족의 리얼한 반응</span></p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Hashtag */}
-            <div className="bg-white text-gray-800 p-6 rounded-2xl shadow-xl">
-              <h3 className="text-xl font-bold mb-2 text-orange-600">필수 해시태그</h3>
-              <p className="text-sm text-gray-500 mb-4">심사를 위해 꼭 포함해주세요!</p>
-              
-              <div className="bg-gray-100 p-4 rounded-lg text-sm mb-4 break-words">
-                #우리아이새해첫코딩 #옥토스튜디오 #코딩챌린지 #새해복많이받으세요 #해달에듀
-              </div>
-              
-              <button 
-                onClick={copyHashtags}
-                className={`w-full py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition ${isCopied ? 'bg-green-500 text-white' : 'bg-gray-800 text-white hover:bg-black'}`}
-              >
-                {isCopied ? (
-                  <>
-                    <CheckCircle size={20} /> 복사 완료!
-                  </>
-                ) : (
-                  <>
-                    <Copy size={20} /> 해시태그 복사하기
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Awards Section */}
-      <section id="awards" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-3">여러분의 영상이 전 세계로!</h2>
-            <p className="text-gray-600">오직 <span className="font-bold text-orange-500">'조회수(View)'</span>가 증명하는 인기스타를 찾습니다.</p>
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-6 max-w-5xl mx-auto mb-12">
-            {/* Prize Cards */}
-            <div className="flex-1 bg-gradient-to-br from-yellow-50 to-white p-6 rounded-2xl border border-yellow-200 text-center shadow-sm">
-              <div className="text-4xl mb-2">🥇</div>
-              <h3 className="text-xl font-bold text-gray-800">1등 (1명)</h3>
-              <p className="text-orange-500 font-bold text-2xl mt-2">30만원</p>
-              <p className="text-gray-500 text-sm">상당 상품권</p>
-            </div>
-            <div className="flex-1 bg-gradient-to-br from-gray-50 to-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm">
-              <div className="text-4xl mb-2">🥈</div>
-              <h3 className="text-xl font-bold text-gray-800">2등 (1명)</h3>
-              <p className="text-orange-500 font-bold text-2xl mt-2">10만원</p>
-              <p className="text-gray-500 text-sm">상당 상품권</p>
-            </div>
-            <div className="flex-1 bg-gradient-to-br from-orange-50 to-white p-6 rounded-2xl border border-orange-200 text-center shadow-sm">
-              <div className="text-4xl mb-2">🥉</div>
-              <h3 className="text-xl font-bold text-gray-800">3등 (2명)</h3>
-              <p className="text-orange-500 font-bold text-2xl mt-2">5만원</p>
-              <p className="text-gray-500 text-sm">상당 상품권</p>
-            </div>
-          </div>
-
-          {/* Tips Box */}
-          <div className="bg-blue-50 p-6 rounded-2xl max-w-3xl mx-auto border border-blue-100">
-            <h3 className="text-lg font-bold text-blue-800 flex items-center gap-2 mb-3">
-              <Lightbulb size={20} className="text-yellow-500 fill-current" />
-              조회수 올리는 꿀팁 (Cheat Key)
-            </h3>
-            <ul className="space-y-2 text-blue-900/80 text-sm md:text-base">
-              <li>• <strong>썸네일:</strong> 사람들이 클릭하고 싶은 재미있는 제목을 지어보세요. (예: "할아버지가 우셨어요 ㅠㅠ")</li>
-              <li>• <strong>공유:</strong> 친구, 친척 단톡방에 링크를 공유해서 자랑하세요!</li>
-              <li>• <strong>반응:</strong> 가족들의 웃음소리가 크고 즐거울수록 조회수가 올라가요.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Application CTA Section (Anchor) */}
-      <section id="apply" className="py-16 bg-gray-900 text-white text-center">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-4">지금 바로 신청하세요!</h2>
-          <p className="text-gray-400 mb-8">내년부터는 유료입니다. 이번 무료 기회를 절대 놓치지 마세요.</p>
-          
-          <div className="flex flex-col md:flex-row justify-center gap-4">
-            <button className="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white text-lg font-bold rounded-full shadow-lg transition transform hover:scale-105">
-              👉 선착순 무료 신청하기 (Google Form)
-            </button>
-            <button className="px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white text-lg font-bold rounded-full transition">
-              📤 내 작품 제출하러 가기
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-2xl font-bold text-center mb-10">자주 묻는 질문 (FAQ)</h2>
-          
-          <div className="space-y-4">
-            {[
-              { q: "코딩을 한 번도 안 해봤는데 가능한가요?", a: "네, 완전 초보도 가능합니다! 옥토 스튜디오는 유치원생도 할 수 있을 만큼 직관적입니다. 기초부터 차근차근 알려주는 가이드 영상을 무료로 제공해 드립니다." },
-              { q: "부모님이 꼭 도와줘야 하나요?", a: "아이 스스로 할 수 있도록 설계되었지만, 가족 반응을 촬영할 때는 부모님이 카메라맨이 되어주시면 더 멋진 영상이 나옵니다." },
-              { q: "참가비는 정말 무료인가요?", a: "네, 이번 시즌은 시범 운영 기간으로 전액 무료입니다. 다음 시즌부터는 유료 교육 과정으로 전환될 예정이니 이번 기회를 놓치지 마세요!" },
-              { q: "롱폼(가로 영상)은 안 되나요?", a: "가능하지만, 이번 챌린지는 조회수 경쟁이므로 '쇼츠'나 '릴스' 같은 숏폼이 훨씬 유리합니다." }
-            ].map((item, index) => (
-              <div key={index} className="border rounded-lg overflow-hidden">
-                <button 
-                  onClick={() => toggleFaq(index)}
-                  className="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none"
-                >
-                  <span className="flex items-center gap-2"><span className="text-orange-500">Q.</span> {item.q}</span>
-                  {openFaqIndex === index ? <ChevronUp size={20} className="text-gray-400"/> : <ChevronDown size={20} className="text-gray-400"/>}
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 font-medium text-gray-600">
+                <button onclick="scrollToSection('about')" class="hover:text-orange-500 transition">챌린지 소개</button>
+                <button onclick="scrollToSection('timeline')" class="hover:text-orange-500 transition">일정 안내</button>
+                <button onclick="scrollToSection('guide')" class="hover:text-orange-500 transition">참여 가이드</button>
+                <button onclick="scrollToSection('awards')" class="hover:text-orange-500 transition">시상 안내</button>
+                <button onclick="scrollToSection('apply')" class="px-4 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition shadow-md">
+                    참가 신청하기
                 </button>
-                {openFaqIndex === index && (
-                  <div className="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed">
-                    <span className="font-bold text-gray-800 mr-1">A.</span> {item.a}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+            </div>
         </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-100 py-12 text-sm text-gray-500">
-        <div className="container mx-auto px-4 text-center">
-          <div className="mb-4">
-            <span className="font-bold text-gray-800 text-lg">해달에듀</span>
-          </div>
-          <p className="mb-2">문의: help@haedaledu.com | 010-0000-0000</p>
-          <p className="mb-6">Copyright © 2025 HAEDAL EDU. All rights reserved.</p>
-          <div className="flex justify-center gap-4 text-xs underline">
-            <a href="#" className="hover:text-gray-800">개인정보처리방침</a>
-            <a href="#" className="hover:text-gray-800">이용약관</a>
-          </div>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 flex flex-col space-y-3 shadow-lg absolute w-full">
+            <button onclick="scrollToSection('about')" class="text-left py-2 hover:bg-gray-50 px-2 rounded">챌린지 소개</button>
+            <button onclick="scrollToSection('timeline')" class="text-left py-2 hover:bg-gray-50 px-2 rounded">일정 안내</button>
+            <button onclick="scrollToSection('guide')" class="text-left py-2 hover:bg-gray-50 px-2 rounded">참여 가이드</button>
+            <button onclick="scrollToSection('awards')" class="text-left py-2 hover:bg-gray-50 px-2 rounded">시상 안내</button>
+            <button onclick="scrollToSection('apply')" class="w-full text-center py-3 bg-orange-500 text-white rounded-lg font-bold shadow-md">
+                무료 참가 신청하기
+            </button>
         </div>
-      </footer>
-    </div>
-  );
-};
+    </nav>
 
-export default App;
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img 
+                src="https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                alt="Family Background" 
+                class="w-full h-full object-cover opacity-20"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-orange-50/80 to-white/90"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <span class="inline-block px-3 py-1 bg-red-100 text-red-600 rounded-full text-sm font-bold mb-4 animate-bounce">
+                ⚡ 올해만 참가비 0원! (내년부터 유료 전환)
+            </span>
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4 text-gray-900 break-keep">
+                이번 설날, 세뱃돈 대신<br class="hidden md:block"/>
+                <span class="text-orange-500">'감동'을 코딩해서</span> 선물하세요! 🧧
+            </h1>
+            <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto break-keep">
+                휴대폰 하나로 만드는 우리 아이 첫 인터랙티브 아트.<br />
+                부모님, 할머니, 할아버지를 깜짝 놀라게 할 세상에 하나뿐인 '디지털 연하장'
+            </p>
+
+            <!-- Countdown Timer -->
+            <div class="flex justify-center space-x-3 md:space-x-4 mb-8" id="countdown">
+                <!-- Javascript will populate this -->
+                <div class="bg-white p-3 rounded-lg shadow-md min-w-[70px]">
+                    <div id="days" class="text-2xl font-bold text-orange-600">0</div>
+                    <div class="text-xs text-gray-500">일</div>
+                </div>
+                <div class="bg-white p-3 rounded-lg shadow-md min-w-[70px]">
+                    <div id="hours" class="text-2xl font-bold text-orange-600">0</div>
+                    <div class="text-xs text-gray-500">시간</div>
+                </div>
+                <div class="bg-white p-3 rounded-lg shadow-md min-w-[70px]">
+                    <div id="minutes" class="text-2xl font-bold text-orange-600">0</div>
+                    <div class="text-xs text-gray-500">분</div>
+                </div>
+                <div class="bg-white p-3 rounded-lg shadow-md min-w-[70px]">
+                    <div id="seconds" class="text-2xl font-bold text-orange-600">0</div>
+                    <div class="text-xs text-gray-500">초</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center gap-3">
+                <button 
+                    onclick="scrollToSection('apply')"
+                    class="w-full md:w-auto px-8 py-4 bg-orange-500 text-white text-xl font-bold rounded-full shadow-lg hover:bg-orange-600 transform transition hover:scale-105"
+                >
+                    👉 선착순 무료 신청하기
+                </button>
+                <p class="text-sm text-gray-500 bg-white/80 px-4 py-1 rounded-full border border-gray-100 shadow-sm">
+                    지금 신청하면 1월 교육 영상 무료 제공!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3">왜 '새해 첫 코딩 챌린지'인가요?</h2>
+                <div class="w-16 h-1 bg-orange-400 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-lg transition duration-300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">🎈</div>
+                    <h3 class="text-xl font-bold mb-3">쉽고 재밌는 도구</h3>
+                    <p class="text-gray-600 break-keep">
+                        복잡한 컴퓨터? NO! <span class="font-bold text-blue-600">휴대폰 하나면 OK!</span><br/>
+                        MIT 미디어랩의 '옥토 스튜디오'로 블록을 조립하듯 터치 몇 번이면 캐릭터가 살아나요.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-orange-50 p-6 rounded-2xl text-center hover:shadow-lg transition duration-300 border border-orange-100">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">👨‍👩‍👧‍👦</div>
+                    <h3 class="text-xl font-bold mb-3">가족 간의 소통</h3>
+                    <p class="text-gray-600 break-keep">
+                        코딩 결과물보다 중요한 건 <span class="font-bold text-orange-600">'가족의 반응'</span><br/>
+                        "할머니, 제가 만든거예요!" 아이의 작품을 본 가족의 환한 웃음이 진짜 목표입니다.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-lg transition duration-300">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">🎓</div>
+                    <h3 class="text-xl font-bold mb-3">특별한 교육 기회</h3>
+                    <p class="text-gray-600 break-keep">
+                        겨울방학, 스마트폰을 생산적으로!<br/>
+                        유튜브만 보던 아이가 <span class="font-bold text-green-600">크리에이터</span>가 됩니다. 논리력과 디지털 리터러시를 키워주세요.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-16 bg-gray-50 scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3">챌린지 로드맵</h2>
+                <p class="text-gray-500">아이들의 겨울방학을 알차게 채워줄 4단계 여정입니다.</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto">
+                <div class="relative border-l-4 border-orange-200 ml-4 md:ml-8 space-y-10">
+                    
+                    <!-- Step 1 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-3.5 top-1 w-6 h-6 bg-orange-500 rounded-full border-4 border-white"></div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm">
+                            <span class="text-sm font-bold text-orange-500 block mb-1">12/15 ~ 12/31</span>
+                            <h3 class="text-lg font-bold mb-2">STEP 1. 참가자 모집</h3>
+                            <p class="text-gray-600 text-sm">선착순 마감 주의! 지금 바로 신청하세요.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-3.5 top-1 w-6 h-6 bg-yellow-400 rounded-full border-4 border-white"></div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm">
+                            <span class="text-sm font-bold text-yellow-500 block mb-1">1월 (6주간)</span>
+                            <h3 class="text-lg font-bold mb-2">STEP 2. 코딩 교육 & 제작</h3>
+                            <p class="text-gray-600 text-sm">온라인 영상으로 집에서 편하게! 나만의 아이디어를 더해 작품을 완성합니다.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-3.5 top-1 w-6 h-6 bg-yellow-400 rounded-full border-4 border-white"></div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm">
+                            <span class="text-sm font-bold text-yellow-500 block mb-1">설 연휴 기간</span>
+                            <h3 class="text-lg font-bold mb-2">STEP 3. 미션 수행</h3>
+                            <p class="text-gray-600 text-sm">가족들에게 작품을 공개하고 반응을 촬영해요. 생생한 현장음이 포인트!</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-3.5 top-1 w-6 h-6 bg-gray-400 rounded-full border-4 border-white"></div>
+                        <div class="bg-white p-5 rounded-xl shadow-sm">
+                            <span class="text-sm font-bold text-gray-500 block mb-1">2월 초</span>
+                            <h3 class="text-lg font-bold mb-2">STEP 4. 제출 및 시상</h3>
+                            <p class="text-gray-600 text-sm">유튜브/인스타 업로드! 조회수 집계 후 수상자를 발표합니다.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guide Section -->
+    <section id="guide" class="py-16 bg-orange-600 text-white scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-3">도전! 숏폼 크리에이터 가이드</h2>
+                <p class="text-orange-100">심사위원(시청자)의 마음을 사로잡을 영상을 만들어주세요!</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Checklist -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                        <i data-lucide="check-circle" class="text-yellow-300"></i> 필수 체크리스트
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <span class="bg-white text-orange-600 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs font-bold mt-0.5 shrink-0">1</span>
+                            <p><strong>화면 비율:</strong> 세로 화면 (9:16 비율) 권장</p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="bg-white text-orange-600 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs font-bold mt-0.5 shrink-0">2</span>
+                            <p><strong>영상 길이:</strong> 60초 미만 (숏폼 필수!)</p>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="bg-white text-orange-600 rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs font-bold mt-0.5 shrink-0">3</span>
+                            <p><strong>필수 내용:</strong> 아이가 코딩한 작품 화면 + <span class="text-yellow-300 font-bold">가족의 리얼한 반응</span></p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hashtag -->
+                <div class="bg-white text-gray-800 p-6 rounded-2xl shadow-xl">
+                    <h3 class="text-xl font-bold mb-2 text-orange-600">필수 해시태그</h3>
+                    <p class="text-sm text-gray-500 mb-4">심사를 위해 꼭 포함해주세요!</p>
+                    
+                    <div id="hashtag-text" class="bg-gray-100 p-4 rounded-lg text-sm mb-4 break-words font-mono">
+                        #우리아이새해첫코딩 #옥토스튜디오 #코딩챌린지 #새해복많이받으세요 #해달에듀
+                    </div>
+                    
+                    <button 
+                        onclick="copyHashtags()"
+                        id="copy-btn"
+                        class="w-full py-3 rounded-lg font-bold flex items-center justify-center gap-2 transition bg-gray-800 text-white hover:bg-black"
+                    >
+                        <i data-lucide="copy" class="w-5 h-5"></i>
+                        <span>해시태그 복사하기</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section id="awards" class="py-16 bg-white scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3">여러분의 영상이 전 세계로!</h2>
+                <p class="text-gray-600">오직 <span class="font-bold text-orange-500">'조회수(View)'</span>가 증명하는 인기스타를 찾습니다.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-6 max-w-5xl mx-auto mb-12">
+                <!-- Prize Cards -->
+                <div class="flex-1 bg-gradient-to-br from-yellow-50 to-white p-6 rounded-2xl border border-yellow-200 text-center shadow-sm">
+                    <div class="text-4xl mb-2">🥇</div>
+                    <h3 class="text-xl font-bold text-gray-800">1등 (1명)</h3>
+                    <p class="text-orange-500 font-bold text-2xl mt-2">30만원</p>
+                    <p class="text-gray-500 text-sm">상당 상품권</p>
+                </div>
+                <div class="flex-1 bg-gradient-to-br from-gray-50 to-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm">
+                    <div class="text-4xl mb-2">🥈</div>
+                    <h3 class="text-xl font-bold text-gray-800">2등 (1명)</h3>
+                    <p class="text-orange-500 font-bold text-2xl mt-2">10만원</p>
+                    <p class="text-gray-500 text-sm">상당 상품권</p>
+                </div>
+                <div class="flex-1 bg-gradient-to-br from-orange-50 to-white p-6 rounded-2xl border border-orange-200 text-center shadow-sm">
+                    <div class="text-4xl mb-2">🥉</div>
+                    <h3 class="text-xl font-bold text-gray-800">3등 (2명)</h3>
+                    <p class="text-orange-500 font-bold text-2xl mt-2">5만원</p>
+                    <p class="text-gray-500 text-sm">상당 상품권</p>
+                </div>
+            </div>
+
+            <!-- Tips Box -->
+            <div class="bg-blue-50 p-6 rounded-2xl max-w-3xl mx-auto border border-blue-100">
+                <h3 class="text-lg font-bold text-blue-800 flex items-center gap-2 mb-3">
+                    <i data-lucide="lightbulb" class="text-yellow-500 fill-current w-5 h-5"></i>
+                    조회수 올리는 꿀팁 (Cheat Key)
+                </h3>
+                <ul class="space-y-2 text-blue-900/80 text-sm md:text-base">
+                    <li>• <strong>썸네일:</strong> 사람들이 클릭하고 싶은 재미있는 제목을 지어보세요. (예: "할아버지가 우셨어요 ㅠㅠ")</li>
+                    <li>• <strong>공유:</strong> 친구, 친척 단톡방에 링크를 공유해서 자랑하세요!</li>
+                    <li>• <strong>반응:</strong> 가족들의 웃음소리가 크고 즐거울수록 조회수가 올라가요.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application CTA Section -->
+    <section id="apply" class="py-16 bg-gray-900 text-white text-center scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-4">지금 바로 신청하세요!</h2>
+            <p class="text-gray-400 mb-8">내년부터는 유료입니다. 이번 무료 기회를 절대 놓치지 마세요.</p>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <button onclick="window.open('https://forms.google.com', '_blank')" class="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white text-lg font-bold rounded-full shadow-lg transition transform hover:scale-105">
+                    👉 선착순 무료 신청하기 (Google Form)
+                </button>
+                <button onclick="window.open('https://forms.google.com', '_blank')" class="px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white text-lg font-bold rounded-full transition">
+                    📤 내 작품 제출하러 가기
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <h2 class="text-2xl font-bold text-center mb-10">자주 묻는 질문 (FAQ)</h2>
+            
+            <div class="space-y-4" id="faq-container">
+                <!-- FAQ Items (JS will handle toggle) -->
+                <div class="border rounded-lg overflow-hidden faq-item">
+                    <button class="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="flex items-center gap-2"><span class="text-orange-500">Q.</span> 코딩을 한 번도 안 해봤는데 가능한가요?</span>
+                        <i data-lucide="chevron-down" class="text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed hidden">
+                        <span class="font-bold text-gray-800 mr-1">A.</span> 네, 완전 초보도 가능합니다! 옥토 스튜디오는 유치원생도 할 수 있을 만큼 직관적입니다. 기초부터 차근차근 알려주는 가이드 영상을 무료로 제공해 드립니다.
+                    </div>
+                </div>
+
+                <div class="border rounded-lg overflow-hidden faq-item">
+                    <button class="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="flex items-center gap-2"><span class="text-orange-500">Q.</span> 부모님이 꼭 도와줘야 하나요?</span>
+                        <i data-lucide="chevron-down" class="text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed hidden">
+                        <span class="font-bold text-gray-800 mr-1">A.</span> 아이 스스로 할 수 있도록 설계되었지만, 가족 반응을 촬영할 때는 부모님이 카메라맨이 되어주시면 더 멋진 영상이 나옵니다.
+                    </div>
+                </div>
+
+                <div class="border rounded-lg overflow-hidden faq-item">
+                    <button class="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="flex items-center gap-2"><span class="text-orange-500">Q.</span> 참가비는 정말 무료인가요?</span>
+                        <i data-lucide="chevron-down" class="text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed hidden">
+                        <span class="font-bold text-gray-800 mr-1">A.</span> 네, 이번 시즌은 시범 운영 기간으로 전액 무료입니다. 다음 시즌부터는 유료 교육 과정으로 전환될 예정이니 이번 기회를 놓치지 마세요!
+                    </div>
+                </div>
+
+                <div class="border rounded-lg overflow-hidden faq-item">
+                    <button class="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="flex items-center gap-2"><span class="text-orange-500">Q.</span> 롱폼(가로 영상)은 안 되나요?</span>
+                        <i data-lucide="chevron-down" class="text-gray-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed hidden">
+                        <span class="font-bold text-gray-800 mr-1">A.</span> 가능하지만, 이번 챌린지는 조회수 경쟁이므로 '쇼츠'나 '릴스' 같은 숏폼이 훨씬 유리합니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-12 text-sm text-gray-500">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-4">
+                <span class="font-bold text-gray-800 text-lg">해달에듀</span>
+            </div>
+            <p class="mb-2">문의: help@haedaledu.com | 010-0000-0000</p>
+            <p class="mb-6">Copyright © 2025 HAEDAL EDU. All rights reserved.</p>
+            <div class="flex justify-center gap-4 text-xs underline">
+                <a href="#" class="hover:text-gray-800">개인정보처리방침</a>
+                <a href="#" class="hover:text-gray-800">이용약관</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // 1. Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 2. Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Toggle icon based on state (optional visual cue, lucide icons are static svg but we can swap)
+            // For simplicity we keep the menu icon or swap if we want advanced behavior
+        });
+
+        // 3. Smooth Scroll and Close Menu
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                // Close mobile menu if open
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+        }
+
+        // 4. Countdown Logic
+        function updateCountdown() {
+            const targetDate = new Date();
+            targetDate.setMonth(11); // December
+            targetDate.setDate(31);
+            targetDate.setHours(23, 59, 59);
+
+            if (new Date() > targetDate) {
+                targetDate.setFullYear(targetDate.getFullYear() + 1);
+            }
+
+            const now = new Date();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((difference / 1000 / 60) % 60);
+                const seconds = Math.floor((difference / 1000) % 60);
+
+                document.getElementById('days').innerText = days;
+                document.getElementById('hours').innerText = hours;
+                document.getElementById('minutes').innerText = minutes;
+                document.getElementById('seconds').innerText = seconds;
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Run immediately
+
+        // 5. Hashtag Copy Logic
+        function copyHashtags() {
+            const tags = "#우리아이새해첫코딩 #옥토스튜디오 #코딩챌린지 #새해복많이받으세요 #해달에듀";
+            const btn = document.getElementById('copy-btn');
+            const originalContent = btn.innerHTML;
+
+            navigator.clipboard.writeText(tags).then(() => {
+                btn.classList.remove('bg-gray-800', 'hover:bg-black');
+                btn.classList.add('bg-green-500', 'text-white');
+                btn.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5"></i> <span>복사 완료!</span>`;
+                lucide.createIcons(); // Re-render icons for the new check-circle
+
+                setTimeout(() => {
+                    btn.classList.remove('bg-green-500');
+                    btn.classList.add('bg-gray-800', 'hover:bg-black');
+                    btn.innerHTML = originalContent;
+                    lucide.createIcons(); // Re-render icons
+                }, 2000);
+            }).catch(err => {
+                alert('복사에 실패했습니다.');
+            });
+        }
+
+        // 6. FAQ Toggle Logic
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i'); // Chevron icon
+
+            // Toggle hidden class
+            content.classList.toggle('hidden');
+            
+            // Rotate icon
+            if (content.classList.contains('hidden')) {
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html>
