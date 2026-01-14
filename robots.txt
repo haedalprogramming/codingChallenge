@@ -1,0 +1,20 @@
+# robots.txt for 우리 아이 첫 코딩 챌린지
+# https://haedalprogramming.github.io/codingChallenge/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://haedalprogramming.github.io/codingChallenge/sitemap.xml
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+
+# Naver Bot
+User-agent: Yeti
+Allow: /
+
+# Daum Bot
+User-agent: Daumoa
+Allow: /
