@@ -25,7 +25,7 @@
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="text-xl font-bold text-orange-600 flex items-center gap-2">
                 <span class="bg-orange-100 p-1 rounded-lg">🧧</span>
-                코딩챌린지
+                첫코딩챌린지
             </div>
             
             <!-- Mobile Menu Button -->
@@ -37,6 +37,7 @@
             <div class="hidden md:flex space-x-6 font-medium text-gray-600">
                 <button onclick="scrollToSection('about')" class="hover:text-orange-500 transition">챌린지 소개</button>
                 <button onclick="scrollToSection('timeline')" class="hover:text-orange-500 transition">일정 안내</button>
+                <button onclick="scrollToSection('education')" class="hover:text-orange-500 transition">교육 영상</button>
                 <button onclick="scrollToSection('guide')" class="hover:text-orange-500 transition">참여 가이드</button>
                 <button onclick="scrollToSection('awards')" class="hover:text-orange-500 transition">시상 안내</button>
                 <button onclick="scrollToSection('apply')" class="px-4 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition shadow-md">
@@ -49,6 +50,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 flex flex-col space-y-3 shadow-lg absolute w-full">
             <button onclick="scrollToSection('about')" class="text-left py-2 hover:bg-gray-50 px-2 rounded">챌린지 소개</button>
             <button onclick="scrollToSection('timeline')" class="text-left py-2 hover:bg-gray-50 px-2 rounded">일정 안내</button>
+            <button onclick="scrollToSection('education')" class="text-left py-2 hover:bg-gray-50 px-2 rounded">교육 영상</button>
             <button onclick="scrollToSection('guide')" class="text-left py-2 hover:bg-gray-50 px-2 rounded">참여 가이드</button>
             <button onclick="scrollToSection('awards')" class="text-left py-2 hover:bg-gray-50 px-2 rounded">시상 안내</button>
             <button onclick="scrollToSection('apply')" class="w-full text-center py-3 bg-orange-500 text-white rounded-lg font-bold shadow-md">
@@ -120,7 +122,7 @@
     <section id="about" class="py-16 bg-white scroll-mt-20">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3">왜 '새해 첫 코딩 챌린지'인가요?</h2>
+                <h2 class="text-3xl font-bold mb-3">왜 '첫 코딩 챌린지'인가요?</h2>
                 <div class="w-16 h-1 bg-orange-400 mx-auto rounded-full"></div>
             </div>
 
@@ -171,8 +173,8 @@
                     <div class="relative pl-8">
                         <div class="absolute -left-3.5 top-1 w-6 h-6 bg-orange-500 rounded-full border-4 border-white"></div>
                         <div class="bg-white p-5 rounded-xl shadow-sm">
-                            <span class="text-sm font-bold text-orange-500 block mb-1">12/15 ~ 12/31</span>
-                            <h3 class="text-lg font-bold mb-2">STEP 1. 참가자 모집</h3>
+                            <span class="text-sm font-bold text-orange-500 block mb-1">1월 중순 ~ 2월 중순</span>
+                            <h3 class="text-lg font-bold mb-2">STEP 1. 참가자 모집 및 홍보</h3>
                             <p class="text-gray-600 text-sm">선착순 마감 주의! 지금 바로 신청하세요.</p>
                         </div>
                     </div>
@@ -181,7 +183,7 @@
                     <div class="relative pl-8">
                         <div class="absolute -left-3.5 top-1 w-6 h-6 bg-yellow-400 rounded-full border-4 border-white"></div>
                         <div class="bg-white p-5 rounded-xl shadow-sm">
-                            <span class="text-sm font-bold text-yellow-500 block mb-1">1월 (6주간)</span>
+                            <span class="text-sm font-bold text-yellow-500 block mb-1">1.17 ~ 2.20 (약 6주간)</span>
                             <h3 class="text-lg font-bold mb-2">STEP 2. 코딩 교육 & 제작</h3>
                             <p class="text-gray-600 text-sm">온라인 영상으로 집에서 편하게! 나만의 아이디어를 더해 작품을 완성합니다.</p>
                         </div>
@@ -201,13 +203,111 @@
                     <div class="relative pl-8">
                         <div class="absolute -left-3.5 top-1 w-6 h-6 bg-gray-400 rounded-full border-4 border-white"></div>
                         <div class="bg-white p-5 rounded-xl shadow-sm">
-                            <span class="text-sm font-bold text-gray-500 block mb-1">2월 초</span>
-                            <h3 class="text-lg font-bold mb-2">STEP 4. 제출 및 시상</h3>
-                            <p class="text-gray-600 text-sm">유튜브/인스타 업로드! 조회수 집계 후 수상자를 발표합니다.</p>
+                            <span class="text-sm font-bold text-gray-500 block mb-1">2.16 ~ 2.27</span>
+                            <h3 class="text-lg font-bold mb-2">STEP 4. 작품 접수 및 시상</h3>
+                            <p class="text-gray-600 text-sm">유튜브/인스타 업로드! 접수 마감 후 조회수 집계하여 수상자를 발표합니다.</p>
                         </div>
                     </div>
 
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-16 bg-white scroll-mt-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-4">
+                    <span>EBS 이솦과 함께합니다</span>
+                </div>
+                <h2 class="text-3xl font-bold mb-3">옥토스튜디오 무료 교육</h2>
+                <p class="text-gray-600">처음이어도 괜찮아요! 영상을 따라하면 누구나 만들 수 있어요.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <!-- Video Grid -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Video 1 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm">
+                        <div class="aspect-video bg-gray-200 flex items-center justify-center">
+                            <!-- YouTube Embed Placeholder - Replace VIDEO_ID_1 with actual ID -->
+                            <iframe
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/VIDEO_ID_1"
+                                title="옥토스튜디오 기초 1"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-800">1강. 옥토스튜디오 시작하기</h3>
+                            <p class="text-sm text-gray-500 mt-1">앱 설치부터 기본 사용법까지</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm">
+                        <div class="aspect-video bg-gray-200 flex items-center justify-center">
+                            <!-- YouTube Embed Placeholder - Replace VIDEO_ID_2 with actual ID -->
+                            <iframe
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/VIDEO_ID_2"
+                                title="옥토스튜디오 기초 2"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-800">2강. 캐릭터 움직이기</h3>
+                            <p class="text-sm text-gray-500 mt-1">블록으로 캐릭터에 생명을 불어넣어요</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm">
+                        <div class="aspect-video bg-gray-200 flex items-center justify-center">
+                            <!-- YouTube Embed Placeholder - Replace VIDEO_ID_3 with actual ID -->
+                            <iframe
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/VIDEO_ID_3"
+                                title="옥토스튜디오 기초 3"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-800">3강. 소리와 인터랙션 추가</h3>
+                            <p class="text-sm text-gray-500 mt-1">흔들기, 터치 등 재미있는 기능 활용</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 4 -->
+                    <div class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm">
+                        <div class="aspect-video bg-gray-200 flex items-center justify-center">
+                            <!-- YouTube Embed Placeholder - Replace VIDEO_ID_4 with actual ID -->
+                            <iframe
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/VIDEO_ID_4"
+                                title="옥토스튜디오 기초 4"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-800">4강. 새해 카드 완성하기</h3>
+                            <p class="text-sm text-gray-500 mt-1">챌린지 미션 작품 만들기</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-center text-gray-500 text-sm mt-6">
+                    더 많은 영상은 <a href="https://www.ebssw.kr" target="_blank" class="text-blue-600 font-bold hover:underline">EBS 이솦 홈페이지</a>에서 확인하세요!
+                </p>
             </div>
         </div>
     </section>
@@ -248,7 +348,7 @@
                     <p class="text-sm text-gray-500 mb-4">심사를 위해 꼭 포함해주세요!</p>
                     
                     <div id="hashtag-text" class="bg-gray-100 p-4 rounded-lg text-sm mb-4 break-words font-mono">
-                        #우리아이새해첫코딩 #옥토스튜디오 #코딩챌린지 #새해복많이받으세요 #해달에듀
+                        #우리아이첫코딩챌린지 #옥토스튜디오 #코딩챌린지 #새해복많이받으세요 #해달에듀
                     </div>
                     
                     <button 
@@ -275,21 +375,21 @@
             <div class="flex flex-col md:flex-row gap-6 max-w-5xl mx-auto mb-12">
                 <!-- Prize Cards -->
                 <div class="flex-1 bg-gradient-to-br from-yellow-50 to-white p-6 rounded-2xl border border-yellow-200 text-center shadow-sm">
-                    <div class="text-4xl mb-2">🥇</div>
-                    <h3 class="text-xl font-bold text-gray-800">1등 (1명)</h3>
+                    <div class="text-4xl mb-2">🏆</div>
+                    <h3 class="text-xl font-bold text-gray-800">최우수상 (1명)</h3>
                     <p class="text-orange-500 font-bold text-2xl mt-2">30만원</p>
                     <p class="text-gray-500 text-sm">상당 상품권</p>
                 </div>
-                <div class="flex-1 bg-gradient-to-br from-gray-50 to-white p-6 rounded-2xl border border-gray-200 text-center shadow-sm">
-                    <div class="text-4xl mb-2">🥈</div>
-                    <h3 class="text-xl font-bold text-gray-800">2등 (1명)</h3>
+                <div class="flex-1 bg-gradient-to-br from-orange-50 to-white p-6 rounded-2xl border border-orange-200 text-center shadow-sm">
+                    <div class="text-4xl mb-2">🎖️</div>
+                    <h3 class="text-xl font-bold text-gray-800">우수상 (2명)</h3>
                     <p class="text-orange-500 font-bold text-2xl mt-2">10만원</p>
                     <p class="text-gray-500 text-sm">상당 상품권</p>
                 </div>
-                <div class="flex-1 bg-gradient-to-br from-orange-50 to-white p-6 rounded-2xl border border-orange-200 text-center shadow-sm">
-                    <div class="text-4xl mb-2">🥉</div>
-                    <h3 class="text-xl font-bold text-gray-800">3등 (2명)</h3>
-                    <p class="text-orange-500 font-bold text-2xl mt-2">5만원</p>
+                <div class="flex-1 bg-gradient-to-br from-green-50 to-white p-6 rounded-2xl border border-green-200 text-center shadow-sm">
+                    <div class="text-4xl mb-2">🌟</div>
+                    <h3 class="text-xl font-bold text-gray-800">장려상 (00명)</h3>
+                    <p class="text-orange-500 font-bold text-2xl mt-2">1만원</p>
                     <p class="text-gray-500 text-sm">상당 상품권</p>
                 </div>
             </div>
@@ -310,18 +410,127 @@
     </section>
 
     <!-- Application CTA Section -->
-    <section id="apply" class="py-16 bg-gray-900 text-white text-center scroll-mt-20">
+    <section id="apply" class="py-16 bg-gray-900 text-white scroll-mt-20">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-4">지금 바로 신청하세요!</h2>
-            <p class="text-gray-400 mb-8">내년부터는 유료입니다. 이번 무료 기회를 절대 놓치지 마세요.</p>
-            
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <button onclick="window.open('https://forms.google.com', '_blank')" class="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white text-lg font-bold rounded-full shadow-lg transition transform hover:scale-105">
-                    👉 선착순 무료 신청하기 (Google Form)
-                </button>
-                <button onclick="window.open('https://forms.google.com', '_blank')" class="px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white text-lg font-bold rounded-full transition">
-                    📤 내 작품 제출하러 가기
-                </button>
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4">지금 바로 신청하세요!</h2>
+                <p class="text-gray-400">내년부터는 유료입니다. 이번 무료 기회를 절대 놓치지 마세요.</p>
+            </div>
+
+            <!-- Application Form -->
+            <form id="application-form" class="max-w-lg mx-auto bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+                <div class="space-y-5">
+                    <!-- Student Name -->
+                    <div>
+                        <label for="studentName" class="block text-sm font-medium mb-2">참가 학생 이름 <span class="text-red-400">*</span></label>
+                        <input
+                            type="text"
+                            id="studentName"
+                            name="studentName"
+                            required
+                            placeholder="김해달"
+                            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-400 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400"
+                        />
+                    </div>
+
+                    <!-- Birth Year -->
+                    <div>
+                        <label for="birthYear" class="block text-sm font-medium mb-2">출생년도 <span class="text-red-400">*</span></label>
+                        <select
+                            id="birthYear"
+                            name="birthYear"
+                            required
+                            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/30 text-white focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400"
+                        >
+                            <option value="" disabled selected class="text-gray-800">출생년도 선택</option>
+                            <option value="2019" class="text-gray-800">2019년</option>
+                            <option value="2018" class="text-gray-800">2018년</option>
+                            <option value="2017" class="text-gray-800">2017년</option>
+                            <option value="2016" class="text-gray-800">2016년</option>
+                            <option value="2015" class="text-gray-800">2015년</option>
+                            <option value="2014" class="text-gray-800">2014년</option>
+                            <option value="2013" class="text-gray-800">2013년</option>
+                        </select>
+                    </div>
+
+                    <!-- Guardian Phone -->
+                    <div>
+                        <label for="guardianPhone" class="block text-sm font-medium mb-2">보호자 연락처 <span class="text-red-400">*</span></label>
+                        <input
+                            type="tel"
+                            id="guardianPhone"
+                            name="guardianPhone"
+                            required
+                            placeholder="010-0000-0000"
+                            maxlength="13"
+                            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-400 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400"
+                        />
+                    </div>
+
+                    <!-- Region -->
+                    <div>
+                        <label for="region" class="block text-sm font-medium mb-2">지역 <span class="text-red-400">*</span></label>
+                        <select
+                            id="region"
+                            name="region"
+                            required
+                            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/30 text-white focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400"
+                        >
+                            <option value="" disabled selected class="text-gray-800">지역 선택</option>
+                            <option value="서울" class="text-gray-800">서울</option>
+                            <option value="부산" class="text-gray-800">부산</option>
+                            <option value="대구" class="text-gray-800">대구</option>
+                            <option value="인천" class="text-gray-800">인천</option>
+                            <option value="광주" class="text-gray-800">광주</option>
+                            <option value="대전" class="text-gray-800">대전</option>
+                            <option value="울산" class="text-gray-800">울산</option>
+                            <option value="세종" class="text-gray-800">세종</option>
+                            <option value="경기" class="text-gray-800">경기</option>
+                            <option value="강원" class="text-gray-800">강원</option>
+                            <option value="충북" class="text-gray-800">충북</option>
+                            <option value="충남" class="text-gray-800">충남</option>
+                            <option value="전북" class="text-gray-800">전북</option>
+                            <option value="전남" class="text-gray-800">전남</option>
+                            <option value="경북" class="text-gray-800">경북</option>
+                            <option value="경남" class="text-gray-800">경남</option>
+                            <option value="제주" class="text-gray-800">제주</option>
+                        </select>
+                    </div>
+
+                    <!-- School -->
+                    <div>
+                        <label for="school" class="block text-sm font-medium mb-2">학교 <span class="text-red-400">*</span></label>
+                        <input
+                            type="text"
+                            id="school"
+                            name="school"
+                            required
+                            placeholder="OO초등학교"
+                            class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/30 text-white placeholder-gray-400 focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-400"
+                        />
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button
+                        type="submit"
+                        id="submit-btn"
+                        class="w-full py-4 bg-orange-500 hover:bg-orange-600 text-white text-lg font-bold rounded-lg shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2"
+                    >
+                        <span>무료 참가 신청하기</span>
+                    </button>
+                </div>
+
+                <!-- Success Message (Hidden by default) -->
+                <div id="success-message" class="hidden text-center py-8">
+                    <div class="text-5xl mb-4">🎉</div>
+                    <h3 class="text-xl font-bold mb-2">신청이 완료되었습니다!</h3>
+                    <p class="text-gray-300">교육 영상 링크를 문자로 보내드릴게요.</p>
+                </div>
+            </form>
+
+            <!-- Work Submission (Coming Soon) -->
+            <div class="text-center mt-8">
+                <p class="text-gray-500 text-sm">작품 제출은 2월 16일부터 가능합니다.</p>
             </div>
         </div>
     </section>
@@ -382,7 +591,7 @@
             <div class="mb-4">
                 <span class="font-bold text-gray-800 text-lg">해달에듀</span>
             </div>
-            <p class="mb-2">문의: help@haedaledu.com | 010-0000-0000</p>
+            <p class="mb-2">문의: <a href="mailto:edu@haedal.io" class="hover:text-gray-800 underline">edu@haedal.io</a> | <a href="https://hdedu.kr/kakao" target="_blank" class="hover:text-gray-800 underline">해달에듀 카톡채널</a></p>
             <p class="mb-6">Copyright © 2025 HAEDAL EDU. All rights reserved.</p>
             <div class="flex justify-center gap-4 text-xs underline">
                 <a href="#" class="hover:text-gray-800">개인정보처리방침</a>
@@ -422,8 +631,8 @@
         // 4. Countdown Logic
         function updateCountdown() {
             const targetDate = new Date();
-            targetDate.setMonth(11); // December
-            targetDate.setDate(31);
+            targetDate.setMonth(1); // February (0-indexed, so 1 = February)
+            targetDate.setDate(27);
             targetDate.setHours(23, 59, 59);
 
             if (new Date() > targetDate) {
@@ -450,7 +659,7 @@
 
         // 5. Hashtag Copy Logic
         function copyHashtags() {
-            const tags = "#우리아이새해첫코딩 #옥토스튜디오 #코딩챌린지 #새해복많이받으세요 #해달에듀";
+            const tags = "#우리아이첫코딩챌린지 #옥토스튜디오 #코딩챌린지 #새해복많이받으세요 #해달에듀";
             const btn = document.getElementById('copy-btn');
             const originalContent = btn.innerHTML;
 
@@ -478,7 +687,7 @@
 
             // Toggle hidden class
             content.classList.toggle('hidden');
-            
+
             // Rotate icon
             if (content.classList.contains('hidden')) {
                 icon.style.transform = 'rotate(0deg)';
@@ -486,6 +695,78 @@
                 icon.style.transform = 'rotate(180deg)';
             }
         }
+
+        // 7. Phone Number Auto-Formatting
+        const phoneInput = document.getElementById('guardianPhone');
+        phoneInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/[^0-9]/g, ''); // Remove non-digits
+
+            if (value.length > 3 && value.length <= 7) {
+                value = value.slice(0, 3) + '-' + value.slice(3);
+            } else if (value.length > 7) {
+                value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7, 11);
+            }
+
+            e.target.value = value;
+        });
+
+        // 8. Application Form Submit Logic (Google Sheets + Zapier Integration)
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxRPF8tQoFhm7JhdcwnUvsV-y6-g48wJwFWdCAEEymKdtWlOvdDBZAZB1ER4n7mSCc-/exec';
+        const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/20060834/ugi0uud/';
+
+        const applicationForm = document.getElementById('application-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const successMessage = document.getElementById('success-message');
+
+        applicationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                studentName: document.getElementById('studentName').value,
+                birthYear: document.getElementById('birthYear').value,
+                guardianPhone: document.getElementById('guardianPhone').value,
+                region: document.getElementById('region').value,
+                school: document.getElementById('school').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>신청 중...</span>';
+
+            try {
+                // Send to Google Sheets
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Send to Zapier
+                await fetch(ZAPIER_WEBHOOK_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Show success message
+                applicationForm.querySelector('.space-y-5').classList.add('hidden');
+                successMessage.classList.remove('hidden');
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span>무료 참가 신청하기</span>';
+            }
+        });
     </script>
 </body>
 </html>
