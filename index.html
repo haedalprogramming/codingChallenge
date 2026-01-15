@@ -177,8 +177,7 @@
     <header>
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm" role="navigation" aria-label="메인 네비게이션">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="text-xl font-bold text-point-purple flex items-center gap-2">
-                <span class="bg-point-blue w-6 h-6 rounded"></span>
+            <div class="text-xl font-bold text-gray-800">
                 첫코딩챌린지
             </div>
             
@@ -194,7 +193,7 @@
                 <button onclick="scrollToSection('education')" class="hover:text-point-purple transition">교육 영상</button>
                 <button onclick="scrollToSection('guide')" class="hover:text-point-purple transition">참여 가이드</button>
                 <button onclick="scrollToSection('awards')" class="hover:text-point-purple transition">시상 안내</button>
-                <button onclick="scrollToSection('apply')" class="px-4 py-2 bg-point-purple text-white rounded-full hover:bg-point-purple-dark transition shadow-md">
+                <button onclick="scrollToSection('apply')" class="px-4 py-2 bg-brand-yellow text-gray-800 font-semibold rounded-full hover:bg-brand-yellow-dark transition shadow-md">
                     참가 신청하기
                 </button>
             </div>
@@ -207,7 +206,7 @@
             <button onclick="scrollToSection('education')" class="text-left py-2 hover:bg-brand-yellow/20 px-2 rounded">교육 영상</button>
             <button onclick="scrollToSection('guide')" class="text-left py-2 hover:bg-brand-yellow/20 px-2 rounded">참여 가이드</button>
             <button onclick="scrollToSection('awards')" class="text-left py-2 hover:bg-brand-yellow/20 px-2 rounded">시상 안내</button>
-            <button onclick="scrollToSection('apply')" class="w-full text-center py-3 bg-point-purple text-white rounded-lg font-bold shadow-md">
+            <button onclick="scrollToSection('apply')" class="w-full text-center py-3 bg-brand-yellow text-gray-800 rounded-lg font-bold shadow-md hover:bg-brand-yellow-dark transition">
                 무료 참가 신청하기
             </button>
         </div>
@@ -265,7 +264,7 @@
             <div class="flex flex-col items-center gap-3">
                 <button
                     onclick="scrollToSection('apply')"
-                    class="w-full md:w-auto px-8 py-4 bg-point-purple text-white text-xl font-bold rounded-full shadow-lg hover:bg-point-purple-dark transform transition hover:scale-105"
+                    class="w-full md:w-auto px-8 py-4 bg-gray-600 text-white text-xl font-bold rounded-full shadow-lg hover:bg-gray-700 transform transition hover:scale-105"
                 >
                     👉 선착순 무료 신청하기
                 </button>
@@ -555,8 +554,8 @@
             </div>
 
             <!-- Tips Box -->
-            <div class="bg-point-purple/5 p-6 rounded-2xl max-w-3xl mx-auto border border-point-purple/20">
-                <h3 class="text-lg font-bold text-point-purple flex items-center gap-2 mb-3">
+            <div class="bg-brand-yellow/10 p-6 rounded-2xl max-w-3xl mx-auto border border-brand-yellow">
+                <h3 class="text-lg font-bold text-gray-800 flex items-center gap-2 mb-3">
                     <i data-lucide="lightbulb" class="text-brand-yellow fill-current w-5 h-5"></i>
                     조회수 올리는 꿀팁 (Cheat Key)
                 </h3>
@@ -680,7 +679,7 @@
                     <button
                         type="submit"
                         id="submit-btn"
-                        class="w-full py-4 bg-point-purple hover:bg-point-purple-dark text-white text-lg font-bold rounded-lg shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2"
+                        class="w-full py-4 bg-brand-yellow hover:bg-brand-yellow-dark text-gray-800 text-lg font-bold rounded-lg shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2"
                     >
                         <span>무료 참가 신청하기</span>
                     </button>
@@ -710,7 +709,7 @@
                 <!-- FAQ Items (JS will handle toggle) -->
                 <div class="border rounded-lg overflow-hidden faq-item">
                     <button class="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="flex items-center gap-2"><span class="text-point-purple">Q.</span> 코딩을 한 번도 안 해봤는데 가능한가요?</span>
+                        <span class="flex items-center gap-2"><span class="text-brand-yellow font-bold">Q.</span> 코딩을 한 번도 안 해봤는데 가능한가요?</span>
                         <i data-lucide="chevron-down" class="text-gray-400 transition-transform duration-300"></i>
                     </button>
                     <div class="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed hidden">
@@ -720,7 +719,7 @@
 
                 <div class="border rounded-lg overflow-hidden faq-item">
                     <button class="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="flex items-center gap-2"><span class="text-point-purple">Q.</span> 부모님이 꼭 도와줘야 하나요?</span>
+                        <span class="flex items-center gap-2"><span class="text-brand-yellow font-bold">Q.</span> 부모님이 꼭 도와줘야 하나요?</span>
                         <i data-lucide="chevron-down" class="text-gray-400 transition-transform duration-300"></i>
                     </button>
                     <div class="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed hidden">
@@ -730,7 +729,7 @@
 
                 <div class="border rounded-lg overflow-hidden faq-item">
                     <button class="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="flex items-center gap-2"><span class="text-point-purple">Q.</span> 참가비는 정말 무료인가요?</span>
+                        <span class="flex items-center gap-2"><span class="text-brand-yellow font-bold">Q.</span> 참가비는 정말 무료인가요?</span>
                         <i data-lucide="chevron-down" class="text-gray-400 transition-transform duration-300"></i>
                     </button>
                     <div class="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed hidden">
@@ -740,7 +739,7 @@
 
                 <div class="border rounded-lg overflow-hidden faq-item">
                     <button class="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="flex items-center gap-2"><span class="text-point-purple">Q.</span> 롱폼(가로 영상)은 안 되나요?</span>
+                        <span class="flex items-center gap-2"><span class="text-brand-yellow font-bold">Q.</span> 롱폼(가로 영상)은 안 되나요?</span>
                         <i data-lucide="chevron-down" class="text-gray-400 transition-transform duration-300"></i>
                     </button>
                     <div class="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed hidden">
@@ -750,7 +749,7 @@
 
                 <div class="border rounded-lg overflow-hidden faq-item">
                     <button class="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="flex items-center gap-2"><span class="text-point-purple">Q.</span> 조회수는 언제 집계되나요?</span>
+                        <span class="flex items-center gap-2"><span class="text-brand-yellow font-bold">Q.</span> 조회수는 언제 집계되나요?</span>
                         <i data-lucide="chevron-down" class="text-gray-400 transition-transform duration-300"></i>
                     </button>
                     <div class="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed hidden">
@@ -760,7 +759,7 @@
 
                 <div class="border rounded-lg overflow-hidden faq-item">
                     <button class="w-full flex justify-between items-center p-4 text-left font-medium hover:bg-gray-50 focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="flex items-center gap-2"><span class="text-point-purple">Q.</span> 유튜브와 인스타그램에 둘 다 올려도 되나요?</span>
+                        <span class="flex items-center gap-2"><span class="text-brand-yellow font-bold">Q.</span> 유튜브와 인스타그램에 둘 다 올려도 되나요?</span>
                         <i data-lucide="chevron-down" class="text-gray-400 transition-transform duration-300"></i>
                     </button>
                     <div class="p-4 bg-gray-50 text-gray-600 border-t text-sm leading-relaxed hidden">
