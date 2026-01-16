@@ -52,6 +52,7 @@
   - (단답형 텍스트 010-0000-0000) 보호자 연락처
   - (드롭다운 서울,부산,대구,인천,광주,대전,울산,세종,경기,강원,충북,충남,전북,전남,경북,경남,제주) 지역
   - (단답형 텍스트) 학교
+- 교육영상 재생목록: https://hdedu.kr/coding-challenge-playlist
 - 작품 제출: https://hdedu.kr/coding-challenge-submit
 
 
