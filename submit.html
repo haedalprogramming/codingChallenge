@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>작품 제출 | 우리 아이 새해 첫 코딩 챌린지 - 해달에듀</title>
+    <meta name="description" content="우리 아이 새해 첫 코딩 챌린지 작품을 제출하세요. 심사는 제출해주신 영상의 조회 수를 기준으로 진행됩니다." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://challenge.haedal.io/submit" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="작품 제출 | 우리 아이 새해 첫 코딩 챌린지" />
+    <meta property="og:description" content="우리 아이 새해 첫 코딩 챌린지 작품을 제출하세요." />
+    <meta property="og:image" content="https://haedalprogramming.github.io/codingChallenge/banner.png" />
+    <meta property="og:url" content="https://challenge.haedal.io/submit" />
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand': {
+              'yellow': '#ffd506',
+              'yellow-dark': '#e6c005',
+            },
+            'point': {
+              'purple': '#7232d8',
+              'purple-dark': '#4d2c77',
+              'blue': '#50a5dc',
+              'pink': '#d069a9',
+            }
+          }
+        }
+      }
+    }
+    </script>
+
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Font Settings -->
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif; }
+        .scroll-mt-20 { scroll-margin-top: 5rem; }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 min-h-screen">
+
+    <!-- Header with Navigation -->
+    <header>
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm" role="navigation" aria-label="메인 네비게이션">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-gray-800">
+                첫코딩챌린지
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 font-medium text-gray-600">
+                <a href="index.html" class="hover:text-point-purple transition">홈으로</a>
+                <a href="index.html#education" class="hover:text-point-purple transition">교육 영상</a>
+                <a href="index.html#awards" class="hover:text-point-purple transition">시상 안내</a>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+    <!-- Hero Section -->
+    <section class="relative pt-24 pb-8 md:pt-32 md:pb-12 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-point-purple/20 to-white"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <span class="inline-block px-3 py-1 bg-point-purple text-white rounded-full text-sm font-bold mb-5">
+                작품 접수 기간: 2.16 ~ 2.27
+            </span>
+            <h1 class="text-3xl md:text-4xl font-extrabold leading-tight mb-4 text-gray-900 break-keep">
+                우리 아이 새해 첫 코딩 챌린지<br/>
+                <span class="text-point-purple">작품 제출</span>
+            </h1>
+            <p class="text-lg text-gray-600 mb-4 max-w-2xl mx-auto break-keep">
+                심사는 제출해주신 영상의 <span class="font-bold text-point-purple">'조회 수'</span>를 기준으로 진행됩니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Submit Form Section -->
+    <section class="py-8 md:py-12">
+        <div class="container mx-auto px-4">
+            <form id="submit-form" class="max-w-2xl mx-auto space-y-8">
+
+                <!-- Section 1: 참가자 및 보호자 정보 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-point-purple rounded-full flex items-center justify-center text-white font-bold">1</div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-800">참가자 및 보호자 정보</h2>
+                            <p class="text-sm text-gray-500">연락처는 시상 및 향후 교육 안내를 위해 정확하게 기입해 주세요.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- 참가 학생 이름 -->
+                        <div>
+                            <label for="studentName" class="block text-sm font-medium text-gray-700 mb-2">
+                                참가 학생 이름 <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="studentName"
+                                name="studentName"
+                                required
+                                placeholder="김해달"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-point-purple focus:ring-2 focus:ring-point-purple/20"
+                            />
+                        </div>
+
+                        <!-- 출생년도 -->
+                        <div class="relative">
+                            <label for="birthYear" class="block text-sm font-medium text-gray-700 mb-2">
+                                출생년도 <span class="text-red-500">*</span>
+                            </label>
+                            <select
+                                id="birthYear"
+                                name="birthYear"
+                                required
+                                class="w-full px-4 py-3 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:border-point-purple focus:ring-2 focus:ring-point-purple/20 appearance-none cursor-pointer bg-white"
+                            >
+                                <option value="" disabled selected>출생년도 선택</option>
+                                <option value="2019">2019년</option>
+                                <option value="2018">2018년</option>
+                                <option value="2017">2017년</option>
+                                <option value="2016">2016년</option>
+                                <option value="2015">2015년</option>
+                                <option value="2014">2014년</option>
+                                <option value="2013">2013년</option>
+                            </select>
+                            <div class="absolute right-3 top-[42px] pointer-events-none">
+                                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400"></i>
+                            </div>
+                        </div>
+
+                        <!-- 보호자 연락처 -->
+                        <div>
+                            <label for="guardianPhone" class="block text-sm font-medium text-gray-700 mb-2">
+                                보호자 연락처 <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="tel"
+                                id="guardianPhone"
+                                name="guardianPhone"
+                                required
+                                placeholder="010-1234-5678"
+                                maxlength="13"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-point-purple focus:ring-2 focus:ring-point-purple/20"
+                            />
+                            <p class="text-xs text-gray-500 mt-1">상금 지급 및 결과 발표 시 연락받으실 번호를 입력해 주세요.</p>
+                        </div>
+
+                        <!-- 지역 -->
+                        <div class="relative">
+                            <label for="region" class="block text-sm font-medium text-gray-700 mb-2">
+                                지역
+                            </label>
+                            <select
+                                id="region"
+                                name="region"
+                                class="w-full px-4 py-3 pr-10 rounded-lg border border-gray-300 focus:outline-none focus:border-point-purple focus:ring-2 focus:ring-point-purple/20 appearance-none cursor-pointer bg-white"
+                            >
+                                <option value="" disabled selected>지역 선택</option>
+                                <option value="서울">서울</option>
+                                <option value="부산">부산</option>
+                                <option value="대구">대구</option>
+                                <option value="인천">인천</option>
+                                <option value="광주">광주</option>
+                                <option value="대전">대전</option>
+                                <option value="울산">울산</option>
+                                <option value="세종">세종</option>
+                                <option value="경기">경기</option>
+                                <option value="강원">강원</option>
+                                <option value="충북">충북</option>
+                                <option value="충남">충남</option>
+                                <option value="전북">전북</option>
+                                <option value="전남">전남</option>
+                                <option value="경북">경북</option>
+                                <option value="경남">경남</option>
+                                <option value="제주">제주</option>
+                            </select>
+                            <div class="absolute right-3 top-[42px] pointer-events-none">
+                                <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400"></i>
+                            </div>
+                        </div>
+
+                        <!-- 학교 -->
+                        <div>
+                            <label for="school" class="block text-sm font-medium text-gray-700 mb-2">
+                                학교
+                            </label>
+                            <input
+                                type="text"
+                                id="school"
+                                name="school"
+                                placeholder="OO초등학교"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-point-purple focus:ring-2 focus:ring-point-purple/20"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: 챌린지 작품 제출 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-point-purple rounded-full flex items-center justify-center text-white font-bold">2</div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-800">챌린지 작품 제출</h2>
+                            <p class="text-sm text-gray-500">심사는 제출해주신 영상의 '조회 수'를 기준으로 진행됩니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- 작품 제목 -->
+                        <div>
+                            <label for="workTitle" class="block text-sm font-medium text-gray-700 mb-2">
+                                작품 제목 <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="workTitle"
+                                name="workTitle"
+                                required
+                                placeholder="[김코딩] 할머니가 깜짝 놀란 새해 카드"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-point-purple focus:ring-2 focus:ring-point-purple/20"
+                            />
+                            <p class="text-xs text-gray-500 mt-1">양식: [참가자이름] 제목</p>
+                        </div>
+
+                        <!-- 작품 의도 -->
+                        <div>
+                            <label for="workDescription" class="block text-sm font-medium text-gray-700 mb-2">
+                                작품 의도 <span class="text-red-500">*</span>
+                            </label>
+                            <textarea
+                                id="workDescription"
+                                name="workDescription"
+                                required
+                                rows="5"
+                                maxlength="500"
+                                placeholder="작품에 대한 소개를 작성해 주세요. (500자 이하)"
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-point-purple focus:ring-2 focus:ring-point-purple/20 resize-none"
+                            ></textarea>
+                            <p class="text-xs text-gray-500 mt-1 text-right"><span id="charCount">0</span>/500자</p>
+                        </div>
+
+                        <!-- 업로드한 플랫폼 선택 -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                업로드한 플랫폼 선택 <span class="text-red-500">*</span>
+                            </label>
+                            <div class="space-y-3">
+                                <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-point-purple hover:bg-point-purple/5 transition">
+                                    <input type="checkbox" name="platform" value="youtube" class="w-5 h-5 text-point-purple rounded focus:ring-point-purple" />
+                                    <span class="flex items-center gap-2">
+                                        <span class="text-red-600 font-bold">YouTube</span>
+                                        유튜브 쇼츠 (YouTube Shorts)
+                                    </span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-point-purple hover:bg-point-purple/5 transition">
+                                    <input type="checkbox" name="platform" value="instagram" class="w-5 h-5 text-point-purple rounded focus:ring-point-purple" />
+                                    <span class="flex items-center gap-2">
+                                        <span class="text-pink-600 font-bold">Instagram</span>
+                                        인스타그램 릴스 (Instagram Reels)
+                                    </span>
+                                </label>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-2">둘 다 업로드한 경우 모두 선택해 주세요. 조회 수가 더 높은 쪽으로 심사됩니다.</p>
+                        </div>
+
+                        <!-- 영상 게시물 링크 (URL 1) -->
+                        <div>
+                            <label for="videoUrl1" class="block text-sm font-medium text-gray-700 mb-2">
+                                영상 게시물 링크 (URL 1) <span class="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="url"
+                                id="videoUrl1"
+                                name="videoUrl1"
+                                required
+                                placeholder="https://youtube.com/shorts/... 또는 https://instagram.com/reel/..."
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-point-purple focus:ring-2 focus:ring-point-purple/20"
+                            />
+                            <p class="text-xs text-gray-500 mt-1">비공개 계정이거나 링크 오류 시 심사에서 제외될 수 있습니다.</p>
+                        </div>
+
+                        <!-- 영상 게시물 링크 (URL 2) -->
+                        <div>
+                            <label for="videoUrl2" class="block text-sm font-medium text-gray-700 mb-2">
+                                영상 게시물 링크 (URL 2) <span class="text-gray-400">(선택)</span>
+                            </label>
+                            <input
+                                type="url"
+                                id="videoUrl2"
+                                name="videoUrl2"
+                                placeholder="https://youtube.com/shorts/... 또는 https://instagram.com/reel/..."
+                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-point-purple focus:ring-2 focus:ring-point-purple/20"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: 설문 조사 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-brand-yellow rounded-full flex items-center justify-center text-gray-800 font-bold">3</div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-800">설문 조사</h2>
+                            <p class="text-sm text-gray-500">향후 더 좋은 교육 프로그램을 만들기 위한 소중한 자료로 활용됩니다.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- 참여 난이도 -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                이번 챌린지 참여 난이도는 어땠나요? <span class="text-red-500">*</span>
+                            </label>
+                            <div class="flex flex-wrap gap-2">
+                                <label class="flex-1 min-w-[80px]">
+                                    <input type="radio" name="difficulty" value="1" required class="sr-only peer" />
+                                    <div class="text-center py-3 px-2 border border-gray-200 rounded-lg cursor-pointer peer-checked:border-point-purple peer-checked:bg-point-purple peer-checked:text-white hover:border-point-purple transition text-sm">
+                                        매우 쉬움
+                                    </div>
+                                </label>
+                                <label class="flex-1 min-w-[80px]">
+                                    <input type="radio" name="difficulty" value="2" class="sr-only peer" />
+                                    <div class="text-center py-3 px-2 border border-gray-200 rounded-lg cursor-pointer peer-checked:border-point-purple peer-checked:bg-point-purple peer-checked:text-white hover:border-point-purple transition text-sm">
+                                        쉬움
+                                    </div>
+                                </label>
+                                <label class="flex-1 min-w-[80px]">
+                                    <input type="radio" name="difficulty" value="3" class="sr-only peer" />
+                                    <div class="text-center py-3 px-2 border border-gray-200 rounded-lg cursor-pointer peer-checked:border-point-purple peer-checked:bg-point-purple peer-checked:text-white hover:border-point-purple transition text-sm">
+                                        보통
+                                    </div>
+                                </label>
+                                <label class="flex-1 min-w-[80px]">
+                                    <input type="radio" name="difficulty" value="4" class="sr-only peer" />
+                                    <div class="text-center py-3 px-2 border border-gray-200 rounded-lg cursor-pointer peer-checked:border-point-purple peer-checked:bg-point-purple peer-checked:text-white hover:border-point-purple transition text-sm">
+                                        어려움
+                                    </div>
+                                </label>
+                                <label class="flex-1 min-w-[80px]">
+                                    <input type="radio" name="difficulty" value="5" class="sr-only peer" />
+                                    <div class="text-center py-3 px-2 border border-gray-200 rounded-lg cursor-pointer peer-checked:border-point-purple peer-checked:bg-point-purple peer-checked:text-white hover:border-point-purple transition text-sm">
+                                        매우 어려움
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 옥토 스튜디오 재미 -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                옥토 스튜디오(Octo Studio) 앱 사용은 재미있었나요? <span class="text-red-500">*</span>
+                            </label>
+                            <div class="flex justify-between items-center gap-2">
+                                <span class="text-xs text-gray-500">전혀 아니다</span>
+                                <div class="flex gap-2">
+                                    <label>
+                                        <input type="radio" name="funRating" value="1" required class="sr-only peer" />
+                                        <div class="w-12 h-12 flex items-center justify-center border-2 border-gray-200 rounded-full cursor-pointer peer-checked:border-point-purple peer-checked:bg-point-purple peer-checked:text-white hover:border-point-purple transition font-bold">
+                                            1
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="funRating" value="2" class="sr-only peer" />
+                                        <div class="w-12 h-12 flex items-center justify-center border-2 border-gray-200 rounded-full cursor-pointer peer-checked:border-point-purple peer-checked:bg-point-purple peer-checked:text-white hover:border-point-purple transition font-bold">
+                                            2
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="funRating" value="3" class="sr-only peer" />
+                                        <div class="w-12 h-12 flex items-center justify-center border-2 border-gray-200 rounded-full cursor-pointer peer-checked:border-point-purple peer-checked:bg-point-purple peer-checked:text-white hover:border-point-purple transition font-bold">
+                                            3
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="funRating" value="4" class="sr-only peer" />
+                                        <div class="w-12 h-12 flex items-center justify-center border-2 border-gray-200 rounded-full cursor-pointer peer-checked:border-point-purple peer-checked:bg-point-purple peer-checked:text-white hover:border-point-purple transition font-bold">
+                                            4
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="funRating" value="5" class="sr-only peer" />
+                                        <div class="w-12 h-12 flex items-center justify-center border-2 border-gray-200 rounded-full cursor-pointer peer-checked:border-point-purple peer-checked:bg-point-purple peer-checked:text-white hover:border-point-purple transition font-bold">
+                                            5
+                                        </div>
+                                    </label>
+                                </div>
+                                <span class="text-xs text-gray-500">매우 그렇다</span>
+                            </div>
+                        </div>
+
+                        <!-- 향후 계획 -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                내년에 전문가 선생님과 함께하는 '심화 코딩 교육 프로그램(유료)'이 개설된다면 참여할 의향이 있으신가요? <span class="text-gray-400">(선택)</span>
+                            </label>
+                            <div class="space-y-2">
+                                <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-point-purple hover:bg-point-purple/5 transition">
+                                    <input type="radio" name="futurePlan" value="yes" class="w-5 h-5 text-point-purple focus:ring-point-purple" />
+                                    <span>네, 참여하고 싶습니다.</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-point-purple hover:bg-point-purple/5 transition">
+                                    <input type="radio" name="futurePlan" value="maybe" class="w-5 h-5 text-point-purple focus:ring-point-purple" />
+                                    <span>커리큘럼을 보고 결정하고 싶습니다.</span>
+                                </label>
+                                <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg cursor-pointer hover:border-point-purple hover:bg-point-purple/5 transition">
+                                    <input type="radio" name="futurePlan" value="no" class="w-5 h-5 text-point-purple focus:ring-point-purple" />
+                                    <span>아니요, 관심 없습니다.</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: 개인정보 동의 및 유의사항 -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white font-bold">4</div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-800">개인정보 동의 및 유의사항</h2>
+                        </div>
+                    </div>
+
+                    <div class="space-y-5">
+                        <!-- 개인정보 수집 및 이용 동의 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" id="privacyConsent" name="privacyConsent" required class="w-5 h-5 mt-0.5 text-point-purple rounded focus:ring-point-purple" />
+                                <div>
+                                    <span class="font-medium text-gray-800">개인정보 수집 및 이용 동의 <span class="text-red-500">*</span></span>
+                                    <p class="text-sm text-gray-500 mt-1">
+                                        수집 항목: 이름, 연락처, 이메일<br/>
+                                        목적: 챌린지 운영, 심사, 시상 및 관련 안내<br/>
+                                        보유 기간: 프로젝트 종료 후 1년
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- 마케팅 정보 수신 동의 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" id="marketingConsent" name="marketingConsent" class="w-5 h-5 mt-0.5 text-point-purple rounded focus:ring-point-purple" />
+                                <div>
+                                    <span class="font-medium text-gray-800">마케팅 정보 수신 동의 <span class="text-gray-400">(선택)</span></span>
+                                    <p class="text-sm text-gray-500 mt-1">
+                                        해달에듀의 새로운 교육 소식과 이벤트 안내를 받으시겠습니까?
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+
+                        <!-- 출품작 활용 동의 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <label class="flex items-start gap-3 cursor-pointer">
+                                <input type="checkbox" id="workUsageConsent" name="workUsageConsent" required class="w-5 h-5 mt-0.5 text-point-purple rounded focus:ring-point-purple" />
+                                <div>
+                                    <span class="font-medium text-gray-800">출품작 활용 동의 <span class="text-red-500">*</span></span>
+                                    <p class="text-sm text-gray-500 mt-1">
+                                        제출된 영상은 추후 챌린지 결과 발표 및 홍보 자료로 활용될 수 있음을 확인합니다.
+                                    </p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button
+                        type="submit"
+                        id="submit-btn"
+                        class="w-full md:w-auto px-12 py-4 bg-point-purple hover:bg-point-purple-dark text-white text-lg font-bold rounded-full shadow-lg transition transform hover:scale-105 flex items-center justify-center gap-2 mx-auto"
+                    >
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                        <span>작품 제출하기</span>
+                    </button>
+                    <p class="text-sm text-gray-500 mt-3">제출 후에는 수정이 어려우니 신중하게 확인해 주세요.</p>
+                </div>
+
+            </form>
+
+            <!-- Success Message (Hidden by default) -->
+            <div id="success-message" class="hidden max-w-2xl mx-auto text-center py-16">
+                <div class="text-6xl mb-6">🎉</div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-3">작품 제출이 완료되었습니다!</h2>
+                <p class="text-gray-600 mb-6">
+                    심사 결과는 마감일(2.27) 이후 개별 연락드릴 예정입니다.<br/>
+                    많은 관심과 응원 부탁드립니다!
+                </p>
+                <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-yellow text-gray-800 font-bold rounded-full hover:bg-brand-yellow-dark transition">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                    홈으로 돌아가기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 py-12 text-sm text-gray-500" role="contentinfo">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-6 flex justify-center items-center gap-4 md:gap-8">
+                <img src="asset/haedaledu_logo.png" alt="해달에듀" class="h-6 md:h-9 w-auto" />
+                <span class="text-gray-800 text-xl md:text-3xl font-light">×</span>
+                <img src="asset/esop_bi.png" alt="EBS 이솦" class="h-10 md:h-[4.5rem] w-auto" />
+            </div>
+            <p class="mb-2">문의: <a href="mailto:edu@haedal.io" class="hover:text-point-purple underline">edu@haedal.io</a> | <a href="https://hdedu.kr/kakao" target="_blank" class="hover:text-point-purple underline">해달에듀 카톡채널</a></p>
+            <p class="mb-6">Copyright © 2026 HAEDAL EDU. All rights reserved.</p>
+            <div class="flex justify-center gap-4 text-xs underline">
+                <a href="#" class="hover:text-gray-800">개인정보처리방침</a>
+                <a href="#" class="hover:text-gray-800">이용약관</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // 1. Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 2. Phone Number Auto-Formatting
+        const phoneInput = document.getElementById('guardianPhone');
+        phoneInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/[^0-9]/g, '');
+
+            if (value.length > 3 && value.length <= 7) {
+                value = value.slice(0, 3) + '-' + value.slice(3);
+            } else if (value.length > 7) {
+                value = value.slice(0, 3) + '-' + value.slice(3, 7) + '-' + value.slice(7, 11);
+            }
+
+            e.target.value = value;
+        });
+
+        // 3. Character Count for Work Description
+        const workDescription = document.getElementById('workDescription');
+        const charCount = document.getElementById('charCount');
+        workDescription.addEventListener('input', (e) => {
+            charCount.textContent = e.target.value.length;
+        });
+
+        // 4. Platform Checkbox Validation
+        function validatePlatform() {
+            const checkboxes = document.querySelectorAll('input[name="platform"]:checked');
+            return checkboxes.length > 0;
+        }
+
+        // 5. Form Submit Logic (Google Sheets + Zapier Integration)
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxKtrfclioEFt7YyDguoAk_q2g63ykd0H8uno3sLq3VAKPpdYtklCNa6c0Q8tup_cHNCA/exec';
+        const ZAPIER_WEBHOOK_URL = 'https://hooks.zapier.com/hooks/catch/20060834/uew0ffl/';
+
+        const submitForm = document.getElementById('submit-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const successMessage = document.getElementById('success-message');
+
+        submitForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Validate platform selection
+            if (!validatePlatform()) {
+                alert('업로드한 플랫폼을 최소 1개 이상 선택해 주세요.');
+                return;
+            }
+
+            // Get form data
+            const platforms = [];
+            document.querySelectorAll('input[name="platform"]:checked').forEach(cb => {
+                platforms.push(cb.value);
+            });
+
+            const formData = {
+                studentName: document.getElementById('studentName').value,
+                birthYear: document.getElementById('birthYear').value,
+                guardianPhone: document.getElementById('guardianPhone').value,
+                region: document.getElementById('region').value,
+                school: document.getElementById('school').value,
+                workTitle: document.getElementById('workTitle').value,
+                workDescription: document.getElementById('workDescription').value,
+                platforms: platforms.join(', '),
+                videoUrl1: document.getElementById('videoUrl1').value,
+                videoUrl2: document.getElementById('videoUrl2').value,
+                difficulty: document.querySelector('input[name="difficulty"]:checked')?.value || '',
+                funRating: document.querySelector('input[name="funRating"]:checked')?.value || '',
+                futurePlan: document.querySelector('input[name="futurePlan"]:checked')?.value || '',
+                privacyConsent: document.getElementById('privacyConsent').checked,
+                marketingConsent: document.getElementById('marketingConsent').checked,
+                workUsageConsent: document.getElementById('workUsageConsent').checked,
+                timestamp: new Date().toISOString()
+            };
+
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>제출 중...</span>';
+
+            try {
+                // Send to Google Sheets
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Send to Zapier
+                await fetch(ZAPIER_WEBHOOK_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // Show success message
+                submitForm.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('제출 중 오류가 발생했습니다. 다시 시도해주세요.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i><span>작품 제출하기</span>';
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
+</html>
